@@ -1,0 +1,406 @@
+/* ==========================================================================
+   RESET GENERAL Y TIPOGRAFÍA
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #ededed; /* Gris claro de fondo de la aplicación */
+    min-height: 100vh;
+}
+
+/* Contenedor principal para centrar la tarjeta en pantalla */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    transition: filter 0.3s ease-in-out; /* Suaviza el efecto blur al abrir el modal */
+}
+
+/* Efecto de desenfoque de fondo cuando el modal está activo */
+.wrapper.blurred {
+    filter: blur(4px) brightness(0.85);
+}
+
+/* ==========================================================================
+   TARJETA PRINCIPAL DE INICIO DE SESIÓN (bd.PNG)
+   ========================================================================== */
+.login-container {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 440px; /* Ancho responsivo ideal */
+    padding: 45px 35px;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra suave */
+    text-align: center;
+}
+
+/* Contenedor del Logo */
+.logo-container {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    max-width: 85%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Campos de entrada generales (Efecto Material Design) */
+.input-group {
+    position: relative;
+    margin-bottom: 35px;
+    background-color: #f5f5f5; /* Gris suave de fondo del input */
+    border-bottom: 1px solid #ccc;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 24px 15px 10px 15px;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    color: #333333;
+    outline: none;
+    cursor: text !important; /* Fuerza a que el cursor sea de escritura siempre */
+}
+
+/* Etiqueta flotante general */
+.input-group label {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #757575;
+    font-size: 17px;
+    transition: all 0.2s ease;
+    pointer-events: none; /* Permite hacer clic a través del texto */
+}
+
+/* Animación del label cuando hay texto o foco */
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+    top: 12px;
+    font-size: 11px;
+    color: #0056b3;
+}
+
+/* Botón Entrar de la pantalla de usuario */
+.btn-submit {
+    background-color: #e0e0e0; /* Gris apagado por defecto */
+    color: #9e9e9e;
+    border: none;
+    padding: 14px 40px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 3px;
+    cursor: not-allowed;
+    margin-bottom: 35px;
+    display: inline-block;
+    transition: all 0.2s ease;
+}
+
+/* Estado activo del botón Entrar cuando se digita el usuario */
+.btn-submit.enabled {
+    background-color: #006699;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+/* Enlaces del pie de página */
+.form-links {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.link-help {
+    display: block;
+    color: #4a4a4a;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.register-text {
+    color: #4a4a4a;
+}
+
+.link-register {
+    color: #0056b3;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.link-help:hover, .link-register:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   MODAL BASE (Fondo oscuro y Tarjeta blanca)
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.38); /* Capa oscura idéntica a la foto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease-in-out;
+    z-index: 1000;
+}
+
+/* Se añade vía JS para abrir el modal */
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Ventana blanca del modal */
+.modal-box {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 360px; /* Tamaño compacto e idéntico a bd2.PNG */
+    padding: 30px 24px 26px 24px;
+    border-radius: 4px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    animation: scaleUp 0.3s ease-in-out;
+}
+
+/* Pequeño efecto de escala al aparecer */
+@keyframes scaleUp {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Títulos internos de los pasos del modal */
+.modal-box h2 {
+    font-size: 17.5px;
+    color: #0067b2; /* Azul corporativo plano */
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: -0.3px;
+}
+
+/* Estilo base comunes para los botones dentro del modal */
+.btn-modal {
+    width: 48%;
+    padding: 10px 0;
+    font-size: 14.5px;
+    font-weight: 500;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+/* Botón Continuar / Enviar (Inactivo en gris claro) */
+.btn-continue {
+    background-color: #e0e0e0;
+    color: #a6a6a6;
+    cursor: not-allowed;
+}
+
+/* Estado activo de los botones de continuar */
+.btn-continue.enabled {
+    background-color: #0067b2;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+/* Botón Cancelar (Azul llamativo con relieve sutil de la foto) */
+.btn-cancel {
+    background-color: #0067b2;
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.23);
+}
+
+.btn-cancel:hover {
+    background-color: #005392;
+}
+
+/* Contenedor de Botones (Continuar / Cancelar) */
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+/* ==========================================================================
+   PASO 1: MODAL DE CONTRASEÑA PREMIUM (bd2.PNG)
+   ========================================================================== */
+/* Grupo de entrada con alerta de error permanente de la captura */
+.input-group.error-state {
+    background-color: #fcf0f2; /* Fondo fucsia/rosado sutil de la foto */
+    border-bottom: 2px solid #ba143e; /* Línea fucsia gruesa */
+    margin-bottom: 4px;
+    position: relative;
+    border-radius: 2px 2px 0 0;
+}
+
+.input-group.error-state input {
+    width: 100%;
+    padding: 24px 45px 8px 12px; /* Margen derecho para que el texto no pise el ojo */
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    color: #333333;
+    outline: none;
+    cursor: text !important;
+}
+
+/* Label de Contraseña */
+.input-group.error-state label {
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    font-size: 11.5px;
+    color: #ba143e;
+    font-weight: 400;
+    pointer-events: none; /* Evita el bloqueo del clic */
+}
+
+/* Icono del ojo para ver la clave */
+.toggle-password {
+    position: absolute;
+    right: 14px;
+    bottom: 10px;
+    cursor: pointer;
+    color: #1c1b1f; /* Tono oscuro idéntico del icono */
+    font-size: 18px;
+    transition: color 0.2s;
+}
+
+.toggle-password:hover {
+    color: #000000;
+}
+
+/* Texto inferior: Contraseña es requerida */
+.error-text {
+    color: #ba143e;
+    font-size: 11.5px;
+    text-align: right;
+    margin-bottom: 26px;
+    padding-right: 2px;
+}
+
+.bold-error {
+    font-weight: 700; /* Negrita exacta para la palabra 'requerida' */
+}
+
+/* ==========================================================================
+   PASO 2: ANIMACIÓN DE LOADING (SPINNER)
+   ========================================================================== */
+.loading-container-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 10px;
+}
+
+/* El círculo giratorio */
+.spinner {
+    width: 45px;
+    height: 45px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #0067b2; /* Azul corporativo */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+.loading-message {
+    font-size: 15px;
+    color: #555555;
+    font-weight: 500;
+}
+
+/* Animación de giro de 360 grados */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   PASO 3: MODAL DE ENTRADA DEL CÓDIGO DE 6 DÍGÍTOS
+   ========================================================================== */
+.code-instruction-text {
+    font-size: 13.5px;
+    color: #555555;
+    margin-bottom: 24px;
+    line-height: 1.45;
+}
+
+/* Bloque del input del código SMS */
+.input-group.code-group {
+    background-color: #f5f5f5;
+    border-bottom: 2px solid #0067b2; /* Línea azul de enfoque */
+    margin-bottom: 25px;
+}
+
+.input-group.code-group input {
+    letter-spacing: 6px; /* Da el espacio clásico entre números de verificación */
+    font-size: 19px;
+    text-align: center; /* Centra el código en medio del input */
+}
+
+.input-group.code-group label {
+    color: #757575;
+    left: 0;
+    right: 0;
+    text-align: center;
+    pointer-events: none;
+}
+
+/* Animación del texto flotante del código */
+.input-group.code-group input:focus ~ label,
+.input-group.code-group input:not(:placeholder-shown) ~ label {
+    top: 12px;
+    font-size: 11px;
+    color: #0067b2;
+}
+
+/* Error por si colocan un código erróneo */
+.error-text-code {
+    color: #ba143e;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: -15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (ADAPTACIÓN RESPONSIVA MÓVIL)
+   ========================================================================== */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 35px 20px;
+    }
+
+    .modal-box {
+        padding: 25px 18px 20px 18px;
+    }
+
+    .modal-box h2 {
+        font-size: 16px;
+    }
+
+    .form-links {
+        font-size: 14px;
+    }
+}
